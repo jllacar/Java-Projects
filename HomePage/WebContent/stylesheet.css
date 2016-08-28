@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: helvetica;
+	background-color: #d9d9d9;
+}
+
+.main{
+	border: 15px solid #f2f2f2;
+	background-color: #f2f2f2;
+}
+
+h1 {
+	text-align: center;
+	background-color: white;
+}
+
+img
+{
+	float: right;
+	border: 10px solid white;
+	border-bottom: 60px solid white;
+	margin: 10px;
+}
+.body-text {
+	color: #333333;
+}
+
+.fun-facts{
+	color: #333333;
+}
+
+.contact-me{
+	color: #333333;
+}
+
+table {
+	border: 3px solid;
+	background-color: white;
+	style: width:20%;
+}
