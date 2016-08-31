@@ -23,6 +23,7 @@ public final class MonteCarlo {
      * @param args
      *            the command line arguments; unused here
      */
+
     public static void main(String[] args) {
         /*
          * Open input and output streams
@@ -49,16 +50,19 @@ public final class MonteCarlo {
             /*
              * Generate pseudo-random number in [0.0,1.0) interval
              */
-            double x = rnd.nextDouble();
+            double x = rnd.nextDouble() * 2;
+            double y = rnd.nextDouble() * 2;
             /*
              * Increment total number of generated points
              */
             ptsInInterval++;
+
+            double dsquare = ((x - 1) * (x - 1)) + ((1 - y) * (1 - y));
             /*
              * Check if point is in [0.0,0.5) interval and increment counter if
              * it is
              */
-            if (x < 0.5) {
+            if (dsquare < 1) {
                 ptsInSubinterval++;
             }
         }
@@ -68,6 +72,8 @@ public final class MonteCarlo {
          */
         double estimate = (100.0 * ptsInSubinterval) / ptsInInterval;
         output.println("Estimate of percentage: " + estimate + "%");
+        double area = 4 * (estimate / 100);
+        output.println(area);
         /*
          * Close input and output streams
          */
