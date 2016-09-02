@@ -9,12 +9,12 @@ import components.simplewriter.SimpleWriter1L;
  * @author Put your name here
  *
  */
-public final class Hailstone1 {
+public final class Hailstone2 {
 
     /**
      * Private constructor so this utility class cannot be instantiated.
      */
-    private Hailstone1() {
+    private Hailstone2() {
     }
 
     /**
@@ -42,6 +42,7 @@ public final class Hailstone1 {
      */
     private static void generateSeries(int n, SimpleWriter out) {
         int x = n;
+        int count = 1;
         out.print(x + " ");
         while (x != 1) {
             if (x % 2 == 0) {
@@ -50,7 +51,9 @@ public final class Hailstone1 {
                 x = (3 * x) + 1;
             }
             out.print(x + " ");
+            count++;
         }
+        out.println("\nLength: " + count);
     }
 
     /**

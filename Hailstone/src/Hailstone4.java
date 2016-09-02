@@ -9,12 +9,12 @@ import components.simplewriter.SimpleWriter1L;
  * @author Put your name here
  *
  */
-public final class Hailstone1 {
+public final class Hailstone4 {
 
     /**
      * Private constructor so this utility class cannot be instantiated.
      */
-    private Hailstone1() {
+    private Hailstone4() {
     }
 
     /**
@@ -42,6 +42,8 @@ public final class Hailstone1 {
      */
     private static void generateSeries(int n, SimpleWriter out) {
         int x = n;
+        int max = n;
+        int count = 1;
         out.print(x + " ");
         while (x != 1) {
             if (x % 2 == 0) {
@@ -49,8 +51,15 @@ public final class Hailstone1 {
             } else {
                 x = (3 * x) + 1;
             }
+            count++;
             out.print(x + " ");
+
+            if (x > max) {
+                max = x;
+            }
         }
+        out.println("\nMax: " + max);
+        out.println("Length: " + count);
     }
 
     /**
@@ -62,8 +71,17 @@ public final class Hailstone1 {
     public static void main(String[] args) {
         SimpleReader in = new SimpleReader1L();
         SimpleWriter out = new SimpleWriter1L();
-        int startValue = getStartValue(out, in);
-        generateSeries(startValue, out);
+        boolean repeat = true;
+        while (repeat) {
+            int startValue = getStartValue(out, in);
+            generateSeries(startValue, out);
+            out.print(
+                    "Do you want to run another series? Type \"y\" to continue:");
+            String answer = in.nextLine();
+            if (!answer.contentEquals("y")) {
+                repeat = false;
+            }
+        }
         /*
          * Close input and output streams
          */
