@@ -9,12 +9,12 @@ import components.simplewriter.SimpleWriter1L;
  * @author JL Lacar
  *
  */
-public final class CoinChange1 {
+public final class CoinChange2 {
 
     /**
      * Private constructor so this utility class cannot be instantiated.
      */
-    private CoinChange1() {
+    private CoinChange2() {
     }
 
     /**
@@ -28,11 +28,9 @@ public final class CoinChange1 {
         SimpleWriter out = new SimpleWriter1L();
 
         int amount = askAmount(in, out);
-        out.print(amount / 100 + " dollars, " + (amount % 100) / 50
-                + " half dollars, " + (amount % 50) / 25 + " quarters, "
-                + (amount % 25) / 10 + " dimes, " + (amount % 10) / 5
-                + " nickels, " + (amount % 5) / 1 + " pennies");
-
+        int[] denominations = { 100, 50, 25, 10, 5, 1 };
+        int[] coinCount = getCoinCount(denominations, amount);
+        printCount(out, coinCount);
         in.close();
         out.close();
     }
@@ -41,7 +39,24 @@ public final class CoinChange1 {
         out.print("Enter an amount (in cents) to make change: ");
         int amount = in.nextInteger();
         return amount;
+    }
 
+    public static int[] getCoinCount(int[] a, int amount) {
+        int[] coinCount = new int[6];
+        coinCount[0] = amount / a[0];
+        for (int n = 1; n < a.length - 1; n++) {
+            coinCount[n] = (amount % a[n - 1]) / a[n];
+        }
+        return coinCount;
+    }
+
+    public static void printCount(SimpleWriter out, int[] a) {
+        out.println("Dollars: " + a[0]);
+        out.println("Half dollars: " + a[1]);
+        out.println("Quarters: " + a[2]);
+        out.println("Dimes: " + a[3]);
+        out.println("Nickels: " + a[4]);
+        out.println("Pennies: " + a[5]);
     }
 
 }
