@@ -68,6 +68,9 @@ public final class Hailstone4 {
      * @param args
      *            the command line arguments
      */
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         SimpleReader in = new SimpleReader1L();
         SimpleWriter out = new SimpleWriter1L();
