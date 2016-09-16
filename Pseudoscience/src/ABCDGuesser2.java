@@ -4,18 +4,18 @@ import components.simplewriter.SimpleWriter;
 import components.simplewriter.SimpleWriter1L;
 
 /**
- * This program uses nested while loops to optimize exponent values of the de
+ * This program uses nested for loops to optimize exponent values of the de
  * Jager formula.
  *
  * @author J.L. Lacar
  *
  */
-public final class ABCDGuesser1 {
+public final class ABCDGuesser2 {
 
     /**
      * Private constructor so this utility class cannot be instantiated.
      */
-    private ABCDGuesser1() {
+    private ABCDGuesser2() {
     }
 
     /**
@@ -49,18 +49,14 @@ public final class ABCDGuesser1 {
                 (1 / 4), (1 / 3), (1 / 2), 1, 2, 3, 4, 5 };
         double bestEstimate = 0, currentEstimate, bestA = 1, bestB = 1,
                 bestC = 1, bestD = 1;
-        int i = 0, j = 0, k = 0, l = 0;
 
-        while (i < jager.length) {
+        for (int i = 0; i < jager.length; i++) {
             double a = jager[i];
-            j = 0;
-            while (j < jager.length) {
+            for (int j = 0; j < jager.length; j++) {
                 double b = jager[j];
-                k = 0;
-                while (k < jager.length) {
+                for (int k = 0; k < jager.length; k++) {
                     double c = jager[k];
-                    l = 0;
-                    while (l < jager.length) {
+                    for (int l = 0; l < jager.length; l++) {
                         double d = jager[l];
                         currentEstimate = Math.pow(w, a) * Math.pow(x, b)
                                 * Math.pow(y, c) * Math.pow(z, d);
@@ -73,13 +69,9 @@ public final class ABCDGuesser1 {
                             bestC = c;
                             bestD = d;
                         }
-                        l++;
                     }
-                    k++;
                 }
-                j++;
             }
-            i++;
         }
 
         double error = percentError(mu, bestEstimate);
