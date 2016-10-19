@@ -1,22 +1,24 @@
 import java.util.Scanner;
 
-public class fibonacciSequencer {
+public class FibonacciSequencer {
     public static void main(String[] args) {
-        fibonacciSequencer sequence = new fibonacciSequencer();
-        sequence.setSequenceLength();
+        FibonacciSequencer sequence = new FibonacciSequencer();
+        int length = enterSequenceLength();
+        sequence.setSequenceLength(length);
         sequence.generate();
         sequence.print();
     }
 
-    private int length;
     private int[] sequence;
 
-    private void setSequenceLength() {
+    private static int enterSequenceLength() {
         Scanner keyboard = new Scanner(System.in);
         System.out.print("Enter a length for the sequence: ");
-        this.length = keyboard.nextInt();
-        this.sequence = new int[this.length];
-        keyboard.close();
+        return keyboard.nextInt();
+    }
+
+    private void setSequenceLength(int n) {
+        this.sequence = new int[n];
     }
 
     private void generate() {
@@ -37,8 +39,8 @@ public class fibonacciSequencer {
 
     private void print() {
         for (int i = 0; i < this.sequence.length; i++) {
-            boolean reachesLength = i == this.sequence.length - 1;
-            String output = (reachesLength ? "%d " : "%d, ");
+            boolean lastOne = i == this.sequence.length - 1;
+            String output = (lastOne ? "%d " : "%d, ");
             System.out.printf(output, this.sequence[i]);
         }
     }
